@@ -10,12 +10,12 @@ import { INCREMENT, INCREMENT_ASYNC, inc } from './actions/counter';
 
 // -- INCREMENT ASYNC
 const delay = ms => new Promise(res => setTimeout(res, ms))
-function* incrementAsync() {
+function* incrementAsyncWorker() {
   yield call(delay, 1000)
   yield put({ type: INCREMENT })
 }
 function* watchIncrementAsync() {
-  yield takeEvery(INCREMENT_ASYNC, incrementAsync)
+  yield takeEvery(INCREMENT_ASYNC, incrementAsyncWorker)
 }
 // --
 

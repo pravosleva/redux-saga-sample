@@ -5,7 +5,12 @@ function counterReducer(state = { value: 0 }, action) {
     case 'INCREMENT':
       return { ...state, value: state.value + 1 }
     case 'INCREMENT_IF_ODD':
-      return { ...state, value: (state.value % 2 !== 0) ? state.value + 1 : state.value }
+      return {
+        ...state,
+        value: state.value % 2 !== 0
+          ? state.value + 1
+          : state.value,
+      }
     case 'DECREMENT':
       return { ...state, value: state.value - 1 }
     default:

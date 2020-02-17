@@ -9,11 +9,11 @@ import logger from 'redux-logger';
 
 import Connected from './Connected'
 import rootReducer from './reducers'
-import { watchLoadData } from './sagas'
+import rootSaga from './sagas'
 
 const sagaMiddleware = createSagaMiddleware()
 const store = createStore(rootReducer, applyMiddleware(logger, sagaMiddleware))
-sagaMiddleware.run(watchLoadData)
+sagaMiddleware.run(rootSaga)
 
 function render() {
   ReactDOM.render(

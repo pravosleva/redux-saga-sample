@@ -1,7 +1,7 @@
 import test from 'tape';
 
 import { put, call } from 'redux-saga/effects'
-import { incrementAsyncWorker, delay } from './sagas'
+import { incrementAsyncWorker, delay } from './sagas/counter'
 
 test('incrementAsync Saga test', assert => {
   const gen = incrementAsyncWorker()

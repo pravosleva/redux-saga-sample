@@ -1,26 +1,29 @@
-import { put, takeEvery, all, call } from 'redux-saga/effects'
+import {
+  put,
+  takeEvery, // Позволяет производить отслеживание (тип события, выполняемый воркер)
+  // all,
+  call,
+} from 'redux-saga/effects'
+import { LOAD_DATA, putData } from './actions';
 
-export const delay = ms => new Promise(res => setTimeout(res, ms))
-
-function* helloSaga() {
-  console.log('Hello Sagas!')
+function fetchData () {
+  return fetch('https://jsonplaceholder.typicode.com/todos/1')
+    .then(res => res.json());
 }
+function* loadDataWorker() {
+  const data = yield call(fetchData);
 
-// Our worker Saga: will perform the async increment task
-export function* incrementAsync() {
-  yield call(delay, 1000)
-  yield put({ type: 'INCREMENT' })
+  yield put(putData(data));
 }
-
-function* watchIncrementAsync() {
-  yield takeEvery('INCREMENT_ASYNC', incrementAsync)
+export function* watchLoadData() {
+  yield takeEvery(LOAD_DATA, loadDataWorker)
 }
 
 // notice how we now only export the rootSaga
 // single entry point to start all Sagas at once
-export default function* rootSaga() {
-  yield all([
-    helloSaga(),
-    watchIncrementAsync()
-  ])
-}
+// export default function* rootSaga() {
+//   yield all([
+//     watchIncrementAsync(),
+//     watchLoadData(),
+//   ])
+// }

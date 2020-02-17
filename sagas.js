@@ -4,7 +4,7 @@ import {
   // all,
   call,
 } from 'redux-saga/effects'
-import { LOAD_DATA, putData } from './actions';
+import { LOAD_DATA, putData } from './actions/dataFromServer';
 
 function fetchData () {
   return fetch('https://jsonplaceholder.typicode.com/todos/1')

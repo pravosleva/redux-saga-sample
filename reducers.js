@@ -12,7 +12,7 @@ function counterReducer(state = { value: 0 }, action) {
       return state
   }
 }
-export const dataReducer = (state = { data: {} }, action) => {
+function dataReducer (state = { data: {} }, action) {
   switch (action.type) {
     case 'PUT_DATA':
       return { ...state, data: { ...action.payload } }
